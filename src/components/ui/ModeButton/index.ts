@@ -1,3 +1,3 @@
-import PhotoViewScreen from "./PhotoViewScreen";
+import ModeButton from "./ModeButton";
 
-export default PhotoViewScreen
+export default ModeButton

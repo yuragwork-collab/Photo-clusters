@@ -1,11 +1,8 @@
+import { ClusterMode } from "@/src/flows/MainFlow/screens/ClustersScreen/_types";
 
-export type PhotoViewRouteParams = {
-  uri?: string;
-  id?: string;
-  w?: string;
-  h?: string;
-  t?: string;
-  cat?: string;
-  conf?: string;
-  title?: string;
-} & Record<string, string | string[]>;
+export type ModeButtonProps = {
+  mode: ClusterMode;
+  value: ClusterMode;
+  label: string;
+  setMode: (mode: ClusterMode) => void;
+};

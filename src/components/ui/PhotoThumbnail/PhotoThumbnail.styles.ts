@@ -2,12 +2,12 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
+    width: 120,
   },
-  text: {
-    marginTop: 8,
-    opacity: 0.7
-  }
+  image: {
+    width: 120,
+    height: 120,
+    borderRadius: 12,
+    backgroundColor: "#ddd",
+  },
 });

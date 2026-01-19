@@ -1,37 +1,18 @@
 import React from "react";
-import { Text, Pressable } from "react-native";
-import { ModeButtonProps } from "./_types";
-import { styles } from "./ModeButton.styles";
+import { Text, ActivityIndicator } from "react-native";
+import { LoaderProps } from "./_types";
+import { styles } from "./Loader.styles";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const ModeButton = (
-  {
-    mode,
-    value,
-    setMode,
-    label,
-  }: ModeButtonProps) => {
-  const active = mode === value;
-
-  const handleSetMode = () => setMode(value)
+const Loader = ({ modelStatus }: LoaderProps) => {
 
   return (
-    <Pressable
-      onPress={handleSetMode}
-      style={[
-        styles.button,
-        active ? styles.buttonActive : styles.buttonInactive,
-      ]}
-    >
-      <Text
-        style={[
-          styles.text,
-          active ? styles.textActive : styles.textInactive,
-        ]}
-      >
-        {label}
-      </Text>
-    </Pressable>
+    <SafeAreaView style={styles.wrapper}>
+      <ActivityIndicator/>
+      <Text style={styles.text}>Loading photos…</Text>
+      <Text style={styles.text}>Model: {modelStatus}</Text>
+    </SafeAreaView>
   );
 };
 
-export default ModeButton;
+export default Loader;

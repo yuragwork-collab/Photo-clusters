@@ -1,4 +1,6 @@
+import { PhotoItem } from "@/src/flows/MainFlow/screens/ClustersScreen/_types";
 
-export type LoaderProps = {
-  modelStatus: string
+export type PhotoThumbnailProps = {
+  item: PhotoItem
+  title: string
 };

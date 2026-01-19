@@ -1,25 +1,13 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  button: {
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 999,
-  },
-  buttonActive: {
-    backgroundColor: "#111",
-  },
-  buttonInactive: {
-    backgroundColor: "#eee",
+  wrapper: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
   },
   text: {
-    fontWeight: "700",
-    fontSize: 12,
-  },
-  textActive: {
-    color: "white",
-  },
-  textInactive: {
-    color: "#111",
-  },
+    marginTop: 8,
+    opacity: 0.7
+  }
 });

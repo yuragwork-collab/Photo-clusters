@@ -1,13 +1,17 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
+  wrapper: { marginBottom: 16 },
+  textWrapper: {
+    paddingHorizontal: 16,
+    paddingBottom: 8
   },
   text: {
-    marginTop: 8,
-    opacity: 0.7
+    fontSize: 16,
+    fontWeight: "700"
+  },
+  contentContainerStyle: {
+    paddingHorizontal: 16,
+    gap: 10
   }
 });

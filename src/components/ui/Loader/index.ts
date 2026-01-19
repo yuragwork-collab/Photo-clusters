@@ -1,3 +1,3 @@
-import ModeButton from "./ModeButton";
+import Loader from "./Loader";
 
-export default ModeButton
+export default Loader

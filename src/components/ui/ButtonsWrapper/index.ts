@@ -1,3 +1,3 @@
-import ModeButton from "./ModeButton";
+import ButtonsWrapper from "./ButtonsWrapper";
 
-export default ModeButton
+export default ButtonsWrapper

@@ -1,8 +1,6 @@
-import { ClusterMode } from "@/src/flows/MainFlow/screens/ClustersScreen/ClustersScreen";
+import { ClusterMode } from "@/src/flows/MainFlow/screens/ClustersScreen/_types";
 
-export type ModeButtonProps = {
+export type ButtonsWrapperProps = {
   mode: ClusterMode;
-  value: ClusterMode;
-  label: string;
   setMode: (mode: ClusterMode) => void;
 };

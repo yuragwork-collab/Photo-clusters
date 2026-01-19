@@ -1,18 +1,35 @@
 import React from "react";
-import { Text, ActivityIndicator } from "react-native";
-import { LoaderProps } from "./_types";
-import { styles } from "./Loader.styles";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View, Pressable, Image } from "react-native";
+import { router } from "expo-router";
+import { styles } from "./PhotoThumbnail.styles";
+import { PhotoThumbnailProps } from "./_types";
 
-const Loader = ({ modelStatus }: LoaderProps) => {
+const PhotoThumbnail = ({ item, title }: PhotoThumbnailProps) => {
+  const onPress = () => {
+    const params = {
+      uri: item.uri,
+      id: item.id,
+      w: String(item.width),
+      h: String(item.height),
+      t: item.creationTime ? String(item.creationTime) : "",
+      cat: item.category ?? "",
+      conf: typeof item.confidence === "number" ? String(item.confidence) : "",
+      title,
+    }
+
+    router.navigate({
+      pathname: "/photo",
+      params,
+    });
+  };
 
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <ActivityIndicator/>
-      <Text style={styles.text}>Loading photos…</Text>
-      <Text style={styles.text}>Model: {modelStatus}</Text>
-    </SafeAreaView>
+    <View style={styles.wrapper}>
+      <Pressable onPress={onPress}>
+        <Image source={{ uri: item.uri }} style={styles.image}/>
+      </Pressable>
+    </View>
   );
 };
 
-export default Loader;
+export default PhotoThumbnail;

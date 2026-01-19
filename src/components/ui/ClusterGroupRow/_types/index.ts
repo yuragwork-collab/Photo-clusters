@@ -1,4 +1,5 @@
+import { Group } from "@/src/flows/MainFlow/screens/ClustersScreen/_types";
 
-export type LoaderProps = {
-  modelStatus: string
+export type ClusterGroupRowProps = {
+  group: Group
 };

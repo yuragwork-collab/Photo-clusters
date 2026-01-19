@@ -1,3 +1,3 @@
-import Loader from "./Loader";
+import ClustersHeaderInfo from "./ClustersHeaderInfo";
 
-export default Loader
+export default ClustersHeaderInfo

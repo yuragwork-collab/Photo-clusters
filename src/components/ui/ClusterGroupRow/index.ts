@@ -1,3 +1,3 @@
-import Loader from "./Loader";
+import ClusterGroupRow from "./ClusterGroupRow";
 
-export default Loader
+export default ClusterGroupRow

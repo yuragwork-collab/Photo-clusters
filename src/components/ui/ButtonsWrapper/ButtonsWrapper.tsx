@@ -1,37 +1,21 @@
 import React from "react";
-import { Text, Pressable } from "react-native";
-import { ModeButtonProps } from "./_types";
-import { styles } from "./ModeButton.styles";
+import { View } from "react-native";
+import { ButtonsWrapperProps } from "./_types";
+import { styles } from "./ButtonsWrapper.styles";
+import ModeButton from "@/src/components/ui/ModeButton";
 
-const ModeButton = (
-  {
-    mode,
-    value,
-    setMode,
-    label,
-  }: ModeButtonProps) => {
-  const active = mode === value;
-
-  const handleSetMode = () => setMode(value)
+const ButtonsWrapper = ({ mode, setMode }: ButtonsWrapperProps) => {
 
   return (
-    <Pressable
-      onPress={handleSetMode}
-      style={[
-        styles.button,
-        active ? styles.buttonActive : styles.buttonInactive,
-      ]}
-    >
-      <Text
-        style={[
-          styles.text,
-          active ? styles.textActive : styles.textInactive,
-        ]}
-      >
-        {label}
-      </Text>
-    </Pressable>
+    <View style={styles.wrapper}>
+      <ModeButton value="day" label="Day" mode={mode} setMode={setMode}/>
+      <ModeButton value="semantic" label="AI" mode={mode} setMode={setMode}/>
+      <ModeButton value="location" label="Location" mode={mode} setMode={setMode}/>
+      <ModeButton value="day_location" label="Day+Location" mode={mode} setMode={setMode}/>
+      <ModeButton value="bursts" label="Bursts" mode={mode} setMode={setMode}/>
+      <ModeButton value="albums" label="Albums" mode={mode} setMode={setMode}/>
+    </View>
   );
 };
 
-export default ModeButton;
+export default ButtonsWrapper;

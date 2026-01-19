@@ -1,13 +1,28 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
+  title: {
+    fontSize: 20,
+    fontWeight: "700",
   },
-  text: {
+
+  line: {
+    marginTop: 4,
+    opacity: 0.8,
+  },
+
+  lineFirst: {
+    marginTop: 6,
+    opacity: 0.8,
+  },
+
+  lineDim: {
+    marginTop: 4,
+    opacity: 0.75,
+  },
+
+  error: {
     marginTop: 8,
-    opacity: 0.7
-  }
+    color: "#b00020",
+  },
 });

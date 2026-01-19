@@ -1,3 +1,3 @@
-import Loader from "./Loader";
+import PhotoThumbnail from "./PhotoThumbnail";
 
-export default Loader
+export default PhotoThumbnail

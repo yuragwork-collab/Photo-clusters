@@ -1,3 +1,3 @@
-import PhotoViewScreen from "./PhotoViewScreen";
+import ClustersScreen from "./ClustersScreen";
 
-export default PhotoViewScreen
+export default ClustersScreen

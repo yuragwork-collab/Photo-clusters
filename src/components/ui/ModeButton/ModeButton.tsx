@@ -1,49 +1,37 @@
 import React from "react";
-import { View, Image, Text, Pressable } from "react-native";
-import { useLocalSearchParams } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { PhotoViewRouteParams } from "./_types";
-import { styles } from "./PhotoViewScreen.styles";
-import { usePhotoViewFacade } from "@/src/flows/MainFlow/_facades/usePhotoViewFacade";
+import { Text, Pressable } from "react-native";
+import { ModeButtonProps } from "./_types";
+import { styles } from "./ModeButton.styles";
 
-const PhotoViewScreen = () => {
-  const params = useLocalSearchParams<PhotoViewRouteParams>();
-  const { handleBack } = usePhotoViewFacade()
+const ModeButton = (
+  {
+    mode,
+    value,
+    setMode,
+    label,
+  }: ModeButtonProps) => {
+  const active = mode === value;
 
-
-  if (!params.uri) {
-    return (
-      <SafeAreaView style={styles.safeAreaEmpty}>
-        <Pressable onPress={handleBack} style={styles.emptyBackButton}>
-          <Text style={styles.emptyBackButtonText}>Go back</Text>
-        </Pressable>
-      </SafeAreaView>
-    );
-  }
-
+  const handleSetMode = () => setMode(value)
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.header}>
-        <Text style={styles.title}>{params.title ?? "Photo"}</Text>
-
-        <Pressable onPress={handleBack} style={styles.backButton}>
-          <Text style={styles.backButtonText}>Go back</Text>
-        </Pressable>
-
-        {params.cat || params.conf ? (
-          <Text style={styles.meta}>
-            {params.cat ? `Category: ${params.cat}` : ""}
-            {params.conf ? `  (${Number(params.conf).toFixed(2)})` : ""}
-          </Text>
-        ) : null}
-      </View>
-
-      <View style={styles.imageWrap}>
-        <Image source={{ uri: params.uri }} style={styles.image} resizeMode="contain"/>
-      </View>
-    </SafeAreaView>
+    <Pressable
+      onPress={handleSetMode}
+      style={[
+        styles.button,
+        active ? styles.buttonActive : styles.buttonInactive,
+      ]}
+    >
+      <Text
+        style={[
+          styles.text,
+          active ? styles.textActive : styles.textInactive,
+        ]}
+      >
+        {label}
+      </Text>
+    </Pressable>
   );
 };
 
-export default PhotoViewScreen;
+export default ModeButton;

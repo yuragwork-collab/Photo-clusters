@@ -1,18 +1,31 @@
 import React from "react";
-import { Text, ActivityIndicator } from "react-native";
-import { LoaderProps } from "./_types";
-import { styles } from "./Loader.styles";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Text } from "react-native";
+import { styles } from "./ClustersHeaderInfo.styles";
+import { ClustersHeaderInfoProps } from "@/src/components/ui/ClustersHeaderInfo/_types";
 
-const Loader = ({ modelStatus }: LoaderProps) => {
-
+const ClustersHeaderInfo = (
+  {
+    permissionGranted,
+    photosCount,
+    mode,
+    modelStatus,
+    error,
+  }: ClustersHeaderInfoProps) => {
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <ActivityIndicator/>
-      <Text style={styles.text}>Loading photos…</Text>
-      <Text style={styles.text}>Model: {modelStatus}</Text>
-    </SafeAreaView>
+    <>
+      <Text style={styles.title}>Photo Clusters</Text>
+
+      <Text style={styles.lineFirst}>
+        {permissionGranted ? `Loaded ${photosCount} photos.` : "No permission to access photos."}
+      </Text>
+
+      <Text style={styles.line}>
+        Mode: {mode} • Model: {modelStatus}
+      </Text>
+
+      {error ? <Text style={styles.error}>{error}</Text> : null}
+    </>
   );
 };
 
-export default Loader;
+export default ClustersHeaderInfo;

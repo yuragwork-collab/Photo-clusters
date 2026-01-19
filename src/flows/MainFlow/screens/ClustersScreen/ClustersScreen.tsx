@@ -1,49 +1,59 @@
-import React from "react";
-import { View, Image, Text, Pressable } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import React, { useCallback } from "react";
+import { FlatList, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { PhotoViewRouteParams } from "./_types";
-import { styles } from "./PhotoViewScreen.styles";
-import { usePhotoViewFacade } from "@/src/flows/MainFlow/_facades/usePhotoViewFacade";
+import Loader from "@/src/components/ui/Loader";
+import ButtonsWrapper from "@/src/components/ui/ButtonsWrapper";
+import ClustersHeaderInfo from "@/src/components/ui/ClustersHeaderInfo";
+import { styles } from "./ClustersScreen.styles";
+import { useClustersFacade } from "@/src/flows/MainFlow/_facades/useClustersFacade";
+import ClusterGroupRow from "@/src/components/ui/ClusterGroupRow";
+import { Group } from "@/src/flows/MainFlow/screens/ClustersScreen/_types";
 
-const PhotoViewScreen = () => {
-  const params = useLocalSearchParams<PhotoViewRouteParams>();
-  const { handleBack } = usePhotoViewFacade()
+const ClustersScreen = () => {
+  const {
+    photos,
+    groups,
+    mode,
+    error,
+    loadingPhotos,
+    modelStatus,
+    permission,
+    setMode,
+  } = useClustersFacade()
 
 
-  if (!params.uri) {
-    return (
-      <SafeAreaView style={styles.safeAreaEmpty}>
-        <Pressable onPress={handleBack} style={styles.emptyBackButton}>
-          <Text style={styles.emptyBackButtonText}>Go back</Text>
-        </Pressable>
-      </SafeAreaView>
-    );
+  const keyExtractor = useCallback((g: Group) => g.key, []);
+
+  const renderItem = useCallback(
+    ({ item }: { item: Group }) => <ClusterGroupRow group={item}/>,
+    []
+  );
+
+  if (loadingPhotos) {
+    return <Loader modelStatus={modelStatus}/>
   }
 
-
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeAreaEmpty}>
       <View style={styles.header}>
-        <Text style={styles.title}>{params.title ?? "Photo"}</Text>
+        <ClustersHeaderInfo
+          permissionGranted={!!permission?.granted}
+          photosCount={photos.length}
+          mode={mode}
+          modelStatus={modelStatus}
+          error={error}
+        />
 
-        <Pressable onPress={handleBack} style={styles.backButton}>
-          <Text style={styles.backButtonText}>Go back</Text>
-        </Pressable>
-
-        {params.cat || params.conf ? (
-          <Text style={styles.meta}>
-            {params.cat ? `Category: ${params.cat}` : ""}
-            {params.conf ? `  (${Number(params.conf).toFixed(2)})` : ""}
-          </Text>
-        ) : null}
+        <ButtonsWrapper mode={mode} setMode={setMode}/>
       </View>
 
-      <View style={styles.imageWrap}>
-        <Image source={{ uri: params.uri }} style={styles.image} resizeMode="contain"/>
-      </View>
+      <FlatList
+        data={groups}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+      />
     </SafeAreaView>
   );
-};
+}
 
-export default PhotoViewScreen;
+export default ClustersScreen
